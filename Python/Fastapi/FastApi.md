@@ -24,9 +24,13 @@ ecosystem.
 Answer:
 
 Automatic API documentation
+
 Data validation
+
 Async programming support
+
 Easy integration with databases
+
 High performance
 
 
@@ -986,3 +990,43 @@ uvicorn main:app --reload
 ## Q: Why is Uvicorn used with FastAPI?
 
 Answer: Uvicorn is an ASGI server used to run FastAPI applications. It handles incoming HTTP requests and serves the FastAPI app efficiently with asynchronous support
+
+
+## What is HTTPException in FastAPI?
+Answer:
+
+HTTPException is used in FastAPI to return custom HTTP error responses to the client. It allows you to send an error status code along with a descriptive message.
+
+from fastapi import HTTPException
+
+raise HTTPException(
+    status_code=404,
+    detail="User not found"
+)
+
+
+or  
+
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
+@app.get("/users/{user_id}")
+def get_user(user_id: int):
+    if user_id != 1:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+    return {"user_id": user_id}
+
+
+| Status Code | Meaning               |
+| ----------- | --------------------- |
+| 200         | success               |
+| 201         | create                |
+| 400         | Bad Request           |
+| 401         | Unauthorized          |
+| 403         | Forbidden             |
+| 404         | Not Found             |
+| 500         | Internal Server Error |
