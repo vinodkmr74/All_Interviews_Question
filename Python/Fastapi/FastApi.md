@@ -522,17 +522,22 @@ db = SessionLocal()
 ## 1 Create Record
 
 user = User(
+
 name="Vinod",
+
 email="vinod@gmail.com"
 )
 
 db.add(user)
+
 db.commit()
+
 db.refresh(user)
 
 ## 2 Read Data
 
 Get All Users
+
 users = db.query(User).all()
 
 ## 3 Get Single User
@@ -542,7 +547,9 @@ user = db.query(User).filter(User.id == 1).first()
 ## Update Data
 
 user = db.query(User).filter(User.id == 1).first()
+
 user.name = "Updated Name"
+
 db.commit()
 
 ## 4. Delete Data
@@ -550,6 +557,7 @@ db.commit()
 user = db.query(User).filter(User.id == 1).first()
 
 db.delete(user)
+
 db.commit()
 
 ## 13. What is Middleware in FastAPI?
@@ -575,7 +583,9 @@ from fastapi import FastAPI, Request
 app = FastAPI()
 
 @app.middleware("http")
+
 async def log_requests(request: Request, call_next):
+
 print("Request Started")
 
     response = await call_next(request)
@@ -594,8 +604,11 @@ request
 Contains information about the incoming request:
 
 request.method
+
 request.url
+
 request.headers
+
 request.client
 
 ## Measure Request Processing Time
@@ -603,6 +616,7 @@ request.client
 A very common interview example.
 
 import time
+
 from fastapi import FastAPI, Request
 
 app = FastAPI()
@@ -643,14 +657,20 @@ start_time = time.time()
 7. Security Headers
    Add security-related headers.
 
-Built-in Middleware Example (CORS)
+## Built-in Middleware Example (CORS)
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
+
 CORSMiddleware,
+
 allow_origins=["*"],
+
 allow_credentials=True,
+
 allow_methods=["*"],
+
 allow_headers=["*"]
 )
 
@@ -681,10 +701,15 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 app.add_middleware(
+
 CORSMiddleware,  
+
  allow_origins=["*"], // url
+
 allow_credentials=True,//Allows cookies and authentication credentials. JWT Tokens, Session Cookie,Authentication  
+
  allow_methods=["*"], // http mathod like GET POST, PUT, DELETE, PATCH, OPTIONS allow_methods=["GET", "POST"]
+
 allow_headers=["*"] // Authorization, Content-Type, Accept
 )
 
@@ -705,7 +730,9 @@ _3 ke combination hai_
 An Origin consists of (Protocol + Domain + Port)
 
 Protocol → http (http://localhost:3000)
+
 Domain → localhost
+
 Port → 3000
 
 ## What is CORSMiddleware?
@@ -715,6 +742,7 @@ CORSMiddleware is a FastAPI middleware used to enable Cross-Origin Resource Shar
 ## Why Do We Need CORS? // Why Do We Need CORSMiddleware?
 
 Frontend (React) url -> http://localhost:3000
+
 Backend (FastAPI) url -> http://localhost:8000
 
 React makes an API call: fetch("http://localhost:8000/users")
@@ -739,11 +767,15 @@ A JWT consists of three parts: Header, Payload, and Signature. After a user succ
 
 Example
 from jos
+
 e import jwt
 
 token = jwt.encode(
+
 {"sub": "vinod"},
+
 "secret_key",
+
 algorithm="HS256"
 )
 
@@ -794,11 +826,12 @@ Answer: there are components
 
 ### 22. What is Async in FastAPI?
 
-Answer:
-Async allows handling multiple requests simultaneously without blocking.
+Answer: Async allows handling multiple requests simultaneously without blocking.
 
 @app.get("/")
+
 async def home():
+
 return {"message":"Hello"}
 
 ## Difference Between Sync and Async
@@ -807,18 +840,18 @@ return {"message":"Hello"}
 
 | -------------------- | --------------------- |
 | Executes one by one | Executes concurrently |
+
 | Slower for I/O tasks | Faster for I/O tasks |
+
 | Uses `def` | Uses `async def` |
 
 ### 21. What is a 422 Unprocessable Entity Error?
 
-Answer:
-This error occurs when request data does not match the Pydantic schema.
+Answer: This error occurs when request data does not match the Pydantic schema.
 
 ## What is Swagger UI?
 
-Answer:
-Swagger UI is automatically generated API documentation.
+Answer: Swagger UI is automatically generated API documentation.
 
 ## What is OAuth2?
 
@@ -827,9 +860,13 @@ OAuth2 is an authorization framework that allows users to grant limited access t
 ## Why Use OAuth2?
 
 Secure API access
+
 Login with Google, GitHub, Facebook, etc.
+
 Avoid sharing user passwords
+
 Provide token-based authentication
+
 Support third-party integrations
 
 ## OAuth2 vs JWT
@@ -848,15 +885,16 @@ More Comprehensive Just a Token Standard
 | Updates full resource | Updates specific fields |
 | Replaces old data     | Partial modification    |
 
-6. What is an API?
+## 6. What is an API?
 
-Answer:
-API (Application Programming Interface) allows communication between different applications.
+Answer: API (Application Programming Interface) allows communication between different applications.
 
 Example:
 
 Frontend sends request
+
 Backend processes request
+
 Backend returns response
 
 ## 26. What is APIRouter in FastAPI?
@@ -864,7 +902,9 @@ Backend returns response
 APIRouter helps organize routes into separate files/modules.
 Benefits:
 Better code organization
+
 Reusable routes
+
 Easy maintenance
 
 ## . Difference Between File and UploadFile
@@ -880,41 +920,47 @@ Easy maintenance
 Answer:
 Used to return custom error responses.
 
-5. What is Alembic?
-
-Answer:
-Alembic is a database migration tool for SQLAlchemy.
+## 5. What is Alembic?
+ 
+Answer: Alembic is a database migration tool for SQLAlchemy.
 
 Used for:
 
-Create tables
-Modify columns
+Create tables, 
+Modify columns, 
 Database version control
 
 Commands:
 
 alembic revision --autogenerate -m "create users table"
-alembic upgrade head 36. What is Database Migration?
 
-Answer:
-Migration means applying database schema changes without manually writing SQL.
+alembic upgrade head 
+
+## 36. What is Database Migration?
+
+Answer: Migration means applying database schema changes without manually writing SQL.
 
 Examples:
 
-Create table
-Add column
-Remove column
+Create table, 
+Add column, 
+Remove column, 
 Modify datatype
 
 ## Create a Virtual Environment (Recommended)
 
-python -m venv venv
-venv\Scripts\activate 2. Install FastAPI and Uvicorn
+python -m venv 
+
+venv\Scripts\activate 
+
+2. Install FastAPI and Uvicorn
+
 pip install fastapi uvicorn
+
 . Run the Application
+
 uvicorn main:app --reload
 
-Q: Why is Uvicorn used with FastAPI?
+## Q: Why is Uvicorn used with FastAPI?
 
-Answer:
-Uvicorn is an ASGI server used to run FastAPI applications. It handles incoming HTTP requests and serves the FastAPI app efficiently with asynchronous support
+Answer: Uvicorn is an ASGI server used to run FastAPI applications. It handles incoming HTTP requests and serves the FastAPI app efficiently with asynchronous support
