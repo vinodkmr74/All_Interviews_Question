@@ -485,17 +485,22 @@ class User(_Base_): // _inherit from Base._
 tablename = "users"
 
     id = Column(Integer, primary_key=True)
+
     name = Column(String)
+    
     email = Column(String)
 
 ## Mapping
 
-    | Database Column | Python Attribute |
+| Database Column | Python Attribute |
 
 | --------------- | ---------------- |
-| id | id |
-| name | name |
-| email | email |
+
+| id              | id |
+
+| name            | name |
+
+| email           | email |
 
 ### Creating Table
 
@@ -510,8 +515,11 @@ Session is used to communicate with the database.
 from sqlalchemy.orm import sessionmaker
 
 SessionLocal = sessionmaker(
+
 autocommit=False,
+
 autoflush=False,
+
 bind=engine
 )
 
@@ -622,7 +630,9 @@ from fastapi import FastAPI, Request
 app = FastAPI()
 
 @app.middleware("http")
+
 async def add_process_time(request: Request, call_next):
+
 start_time = time.time()
 
     response = await call_next(request)
@@ -839,6 +849,7 @@ return {"message":"Hello"}
     | Sync                 | Async                 |
 
 | -------------------- | --------------------- |
+
 | Executes one by one | Executes concurrently |
 
 | Slower for I/O tasks | Faster for I/O tasks |
