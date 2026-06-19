@@ -29,13 +29,10 @@ It allows a frontend (React, mobile app) to talk to a backend (FastAPI, Django, 
 
 ##### Key Features of REST API
 
-    .Stateless (server does not remember previous request)
-
-    .Uses JSON format (mostly)
-
-    .Works over HTTP
-
-    .Easy to use and scalable
+1. Stateless (server does not remember previous request)
+2. Uses JSON format (mostly)
+3. Works over HTTP
+4. Easy to use and scalable
 
 ##### REST API uses standard HTTP methods:
 
@@ -115,7 +112,9 @@ def get_db():
 return "DB"
 
 @app.get("/users")
+
 def get_users(db = Depends(get_db)):
+
 return {"db": db}
 
 ##### 6 Path Parameters ?
@@ -162,6 +161,7 @@ return {
 "age": age
 
 }
+
 ### Difference Between Path and Query Parameters
 
 | Path Parameter      | Query Parameter  |
@@ -169,7 +169,6 @@ return {
 | Required            | Optional         |
 | Part of URL path    | After `?`        |
 | Identifies resource | Filters/Searches |
-
 
 ##### 8.What is Request Body?
 
@@ -207,12 +206,14 @@ FastAPI. BaseModel also supports optional fields, default values, nested models,
 
 Before Pydantic, developers had to manually validate data:
 
-Ex----
+Ex--
 from pydantic import BaseModel
 
 class User(BaseModel):
 name: str
+
 age: int
+
 email: str
 
 ### BaseModel in FastAPI Request Body
@@ -223,11 +224,15 @@ from pydantic import BaseModel
 app = FastAPI()
 
 class User(BaseModel):
+
 name: str
+
 age: int
 
 @app.post("/users")
+
 def create_user(user: User):
+
 return user
 
 #### Optional Fields
@@ -236,15 +241,21 @@ from typing import Optional
 from pydantic import BaseModel
 
 class User(BaseModel):
+
 name: str
+
 age: int
+
 phone: Optional[str] = None //Optional Fields
 
 ### Default Values
 
 class User(BaseModel):
+
 name: str
+
 age: int
+
 is_active: bool = True ///Default Values
 
 ### Nested Models
@@ -252,11 +263,15 @@ is_active: bool = True ///Default Values
 from pydantic import BaseModel
 
 class _Address_(BaseModel):
+
 city: str
+
 state: str
 
 class User(BaseModel):
+
 name: str
+
 address: _Address_
 
 ## List Fields
@@ -265,7 +280,9 @@ from typing import List
 from pydantic import BaseModel
 
 class User(BaseModel):
+
 name: str
+
 skills: List[str]
 
 ### Model Serialization
@@ -285,8 +302,11 @@ print(user.model_dump_json())
 ### Field Constraints
 
 from pydantic import BaseModel, Field
+
 class User(BaseModel):
+
 name: str = Field(min_length=3, max_length=50)
+
 age: int = Field(gt=0, lt=100)
 
 ### Custom Validators
@@ -330,14 +350,21 @@ app = FastAPI()
 
 class User(BaseModel):
 id: int
+
 name: str
+
 email: str
 
 @app.get("/user", response_model=User)
+
 def get_user():
+
 return {
+
 "id": 1,
+
 "name": "Vinod",
+
 "email": "vinod@gmail.com"
 }
 
@@ -349,14 +376,21 @@ return {
 
 class User(BaseModel):
 id: int
+
 name: str
 
 @app.get("/user", response_model=User)
+
 def get_user():
+
 return {
+
 "id": 1,
+
 "name": "Vinod",
+
 "email": "vinod@gmail.com",
+
 "password": "123456"
 }
 
@@ -394,50 +428,61 @@ SQLAlchemy provides features like CRUD operations, relationships, session manage
 ### SQLAlchemy Model
 
 class User(Base):
-**tablename** = "users"
+
+tablename= "users"
 
     id = Column(Integer, primary_key=True)
+
     name = Column(String)
 
 ## here
 
 Table → users
+
 Row → Object
+
 Column → Class Attribute
 
 ## 12 Why Use SQLAlchemy?
 
-ans->
+ans-> Database Abstraction (Works with multiple databases: like MySQL, PostgreSQL, SQLite, Oracle ,SQL Server)
 
-- 1. Database Abstraction (Works with multiple databases: like MySQL, PostgreSQL, SQLite, Oracle ,SQL Server)
-- 2. Less SQL Code
-- 3. Easy CRUD Operations
-- 4. Relationship Management like
-     One-to-One
-     One-to-Many
-     Many-to-Many
+1. Less SQL Code
+
+2. Easy CRUD Operations
+
+3. Relationship Management like
+   One-to-One
+   One-to-Many
+   Many-to-Many
 
 ## Installing SQLAlchemy
 
 pip install sqlalchemy
+
 pip install pymysql
 
 ## Creating Database Connection
 
 DATABASE_URL = "mysql+pymysql://root:password@localhost/testdb"
+
 engine = create_engine(DATABASE_URL)
 
 ## Creating Base Class
 
 _All models inherit from Base._
-from sqlalchemy.orm import declarative*base
-\_Base* = declarative_base()
+
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
 
 Creating Model
+
 from sqlalchemy import Column, Integer, String
 
 class User(_Base_): // _inherit from Base._
-**tablename** = "users"
+
+tablename = "users"
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
@@ -702,8 +747,7 @@ token = jwt.encode(
 algorithm="HS256"
 )
 
-This generates a JWT token that can be used for secure user authentication.
-15. What is JWT?
+This generates a JWT token that can be used for secure user authentication. 15. What is JWT?
 
 Answer:
 JWT (JSON Web Token) is used for authentication.
@@ -712,14 +756,15 @@ After login, the server generates a token and sends it to the client.
 
 The client sends the token with every request.
 
-
 ## Why Use JWT?
+
 1. Authenticate users after login.
 2. Authorize access to protected resources.
 3. Enable stateless authentication.
 4. Secure API communication between client and server.
 
 ## JWT vs Session Authentication
+
 | JWT              | Session                       |
 | ---------------- | ----------------------------- |
 | Stateless        | Stateful                      |
@@ -728,17 +773,18 @@ The client sends the token with every request.
 | Good for APIs    | Good for Traditional Web Apps |
 | Uses Tokens      | Uses Session IDs              |
 
-
 **Session Authentication:** Authentication information is stored on the server, and the client only stores a session ID.
 
-
 ### 19. What are JWT Components?
+
 Answer: there are components
 
 1. Header
 2. Payload
 3. Signature
+
 ### Authentication vs Authorization
+
 | Authentication  | Authorization                |
 | --------------- | ---------------------------- |
 | Verify identity | Verify permissions           |
@@ -747,30 +793,35 @@ Answer: there are components
 | Example: Login  | Example: Admin access        |
 
 ### 22. What is Async in FastAPI?
+
 Answer:
 Async allows handling multiple requests simultaneously without blocking.
 
 @app.get("/")
 async def home():
-    return {"message":"Hello"}
+return {"message":"Hello"}
 
-##  Difference Between Sync and Async
+## Difference Between Sync and Async
 
     | Sync                 | Async                 |
+
 | -------------------- | --------------------- |
-| Executes one by one  | Executes concurrently |
-| Slower for I/O tasks | Faster for I/O tasks  |
-| Uses `def`           | Uses `async def`      |
+| Executes one by one | Executes concurrently |
+| Slower for I/O tasks | Faster for I/O tasks |
+| Uses `def` | Uses `async def` |
 
 ### 21. What is a 422 Unprocessable Entity Error?
+
 Answer:
 This error occurs when request data does not match the Pydantic schema.
 
 ## What is Swagger UI?
+
 Answer:
 Swagger UI is automatically generated API documentation.
 
 ## What is OAuth2?
+
 OAuth2 is an authorization framework that allows users to grant limited access to applications without sharing their passwords. It works using access tokens and is commonly used for API security and social logins such as Google and GitHub login. In FastAPI, OAuth2 is often implemented with JWT tokens, where the user authenticates, receives an access token, and includes that token in the Authorization header for accessing protected resources.
 
 ## Why Use OAuth2?
@@ -782,20 +833,20 @@ Provide token-based authentication
 Support third-party integrations
 
 ## OAuth2 vs JWT
-OAuth2        	                       JWT
-Authorization Framework 	           Token Format
-Defines How Access is Granted       	Stores User Information
-Can Use JWT Tokens	                     JWT Can Be Used Inside OAuth2
-Handles Authentication Flow          	 Handles Data Transmission
-More Comprehensive	                      Just a Token Standard
 
+OAuth2 JWT
+Authorization Framework Token Format
+Defines How Access is Granted Stores User Information
+Can Use JWT Tokens JWT Can Be Used Inside OAuth2
+Handles Authentication Flow Handles Data Transmission
+More Comprehensive Just a Token Standard
 
 ## 8. Difference Between PUT and PATCH
+
 | PUT                   | PATCH                   |
 | --------------------- | ----------------------- |
 | Updates full resource | Updates specific fields |
 | Replaces old data     | Partial modification    |
-
 
 6. What is an API?
 
@@ -809,12 +860,15 @@ Backend processes request
 Backend returns response
 
 ## 26. What is APIRouter in FastAPI?
+
 APIRouter helps organize routes into separate files/modules.
 Benefits:
 Better code organization
 Reusable routes
 Easy maintenance
+
 ## . Difference Between File and UploadFile
+
 | File                        | UploadFile     |
 | --------------------------- | -------------- |
 | Loads entire file in memory | Streams file   |
@@ -822,6 +876,7 @@ Easy maintenance
 | Small files                 | Large files    |
 
 ## What is HTTPException?
+
 Answer:
 Used to return custom error responses.
 
@@ -839,8 +894,7 @@ Database version control
 Commands:
 
 alembic revision --autogenerate -m "create users table"
-alembic upgrade head
-36. What is Database Migration?
+alembic upgrade head 36. What is Database Migration?
 
 Answer:
 Migration means applying database schema changes without manually writing SQL.
@@ -852,12 +906,10 @@ Add column
 Remove column
 Modify datatype
 
-
-
 ## Create a Virtual Environment (Recommended)
+
 python -m venv venv
-venv\Scripts\activate
-2. Install FastAPI and Uvicorn
+venv\Scripts\activate 2. Install FastAPI and Uvicorn
 pip install fastapi uvicorn
 . Run the Application
 uvicorn main:app --reload
