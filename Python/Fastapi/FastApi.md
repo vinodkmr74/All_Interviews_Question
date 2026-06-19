@@ -14,10 +14,10 @@ ecosystem.
 
 ##### **key features**
 
-Automatic API documentation (Swagger UI)
-Pydantic user for Data validation
-High performance
-Type hint-based development
+1. Automatic API documentation (Swagger UI)
+2. Pydantic user for Data validation
+3. High performance
+4. Type hint-based development
 
 ##### 2. What is REST API?
 
