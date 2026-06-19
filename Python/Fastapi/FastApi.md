@@ -19,6 +19,17 @@ ecosystem.
 3. High performance
 4. Type hint-based development
 
+
+## 3. What are the advantages of FastAPI?
+Answer:
+
+Automatic API documentation
+Data validation
+Async programming support
+Easy integration with databases
+High performance
+
+
 ##### 2. What is REST API?
 
 ans=> A REST API (Representational State Transfer API) enables communication between client and server over the internet using HTTP requests .
