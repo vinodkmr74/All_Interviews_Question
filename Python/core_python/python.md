@@ -661,14 +661,10 @@ def add(a, b):
 
 ## Module vs Package
 
-| Module                                 | Package                                |
-
+| Module                                 | Package                                    |
 | -------------------------------------- | ------------------------------------------ |
-
 | A single `.py` file                    | A collection of modules                    |
-
 | Contains functions, classes, variables | Contains multiple modules and sub-packages |
-
 | Example: `math.py`                     | Example: `numpy`, `pandas`                 |
 
 ## Q: What is the difference between import module and from module import function?
