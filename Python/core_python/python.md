@@ -615,17 +615,11 @@ finally:
 ## Keywords Used in Exception Handling
 | Keyword   |    Purpose                               |
 | --------- | ----------------------------------------- |
-
 | `try`     | Contains code that may raise an exception |
-
 | `except`  | Handles the exception                     |
-
 | `else`    | Executes if no exception occurs           |
-
 | `finally` | Executes regardless of exceptions         |
-
 | `raise`   | Manually raises an exception              |
-
 | --------- | ----------------------------------------- |
 
 
