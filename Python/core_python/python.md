@@ -557,20 +557,27 @@ It allows you to catch errors and execute alternative code when an error occurs.
 - Allows custom error messages.
 
 try:
+
     # Code that may cause an exception
+
 except:
+
     # Code to handle the exception
 
 <!-- -------- -->
 try:
     num = int(input("Enter a number: "))
+
     result = 10 / num
+
     print(result)
 
 except ValueError:
+
     print("Please enter a valid number!")
 
 except ZeroDivisionError:
+
     print("Cannot divide by zero!")
 
 
@@ -582,9 +589,11 @@ try:
     num = 10 / 2
 
 except ZeroDivisionError:
+
     print("Error!")
 
 else:
+
     print("Result:", num)
 
 ### Using finally
@@ -604,13 +613,21 @@ finally:
     print("This always executes")
 
 ## Keywords Used in Exception Handling
-    | Keyword   | Purpose                                   |
+| Keyword   |    Purpose                               |
 | --------- | ----------------------------------------- |
+
 | `try`     | Contains code that may raise an exception |
+
 | `except`  | Handles the exception                     |
+
 | `else`    | Executes if no exception occurs           |
+
 | `finally` | Executes regardless of exceptions         |
+
 | `raise`   | Manually raises an exception              |
+
+| --------- | ----------------------------------------- |
+
 
 - Error: A serious issue that usually stops program execution (e.g., syntax errors).
 - Exception: A runtime problem that can be caught and handled using exception handling (e.g., ZeroDivisionError, ValueError).
@@ -650,10 +667,14 @@ def add(a, b):
 
 ## Module vs Package
 
-    | Module                                 | Package                                    |
+| Module                                 | Package                                |
+
 | -------------------------------------- | ------------------------------------------ |
+
 | A single `.py` file                    | A collection of modules                    |
+
 | Contains functions, classes, variables | Contains multiple modules and sub-packages |
+
 | Example: `math.py`                     | Example: `numpy`, `pandas`                 |
 
 ## Q: What is the difference between import module and from module import function?
@@ -779,8 +800,11 @@ They are memory-efficient because they produce values only when needed.
 
 
 def read_large_file(filename):
+
     with open(filename) as file:
+
         for line in file:
+
             yield line
 
 This reads one line at a time instead of loading the entire file.
@@ -822,25 +846,32 @@ for num in numbers():
 A Decorator is a function that adds extra functionality to another function without modifying its original code.
 
 def my_decorator(func):
+
     def wrapper():
+
         print("Before function call")
+
         func()
+
         print("After function call")
+
     return wrapper
 
 @my_decorator
+
 def greet():
+
     print("Hello!")
 
 greet()
 
 
 ## Real-World Use Cases
-Logging
-Authentication & Authorization
-Performance Timing
-Input Validation
-Caching
+Logging, 
+Authentication & Authorization, 
+Performance Timing, 
+Input Validation, 
+Caching, 
 
 ## What is Deep Copy in Python?
 
