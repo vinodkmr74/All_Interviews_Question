@@ -394,3 +394,119 @@ class Student:
 obj = Student("Vinod")
 
 print(obj.name)
+
+
+## What is __init__() in Python?
+
+ans: __init__() is a constructor method that is automatically called when an object is created.
+
+class Employee:
+
+    def __init__(self, name):
+
+        self.name = name
+
+emp = Employee("Vinod")
+
+## What is self in Python?
+
+Ans: self refers to the current object of the class and is used to access instance variables and methods.
+
+class Test:
+
+    def show(self):
+
+        print("Hello")
+
+## What is the pass Statement in Python?
+
+Ans The pass statement is a null (empty) statement in Python. It does nothing when executed and is used as a placeholder where code is required syntactically but no action is needed.
+
+class Student:
+
+    pass
+
+Here, pass is used because the class body cannot be empty.
+
+for i in range(5):
+
+    pass
+
+The loop runs, but pass performs no action.
+
+*pass is a placeholder that does nothing.*
+
+## What is break and continue?
+
+Stops the loop.
+
+for i in range(5):
+
+    if i == 3:
+
+        break
+
+Skips current iteration.
+
+for i in range(5):
+
+    if i == 3:
+
+        continue
+
+
+## What is append() in Python?
+
+The append() method adds a single element to the end of a list.
+
+Example:
+
+fruits = ["Apple", "Banana"]
+
+fruits.append("Mango")
+
+print(fruits)
+
+Output: ['Apple', 'Banana', 'Mango']
+
+## What is extend() in Python?
+
+The extend() method adds multiple elements (an iterable) to the end of a list.
+
+Example:
+
+fruits = ["Apple", "Banana"]
+
+fruits.extend(["Mango", "Orange"])
+
+print(fruits)
+
+Output: ['Apple', 'Banana', 'Mango', 'Orange']
+
+| append()                        | extend()                        |
+| ------------------------------- | ------------------------------- |
+| Adds a single element           | Adds multiple elements          |
+| List is added as one item       | Elements are added individually |
+| `append([3,4])` → `[1,2,[3,4]]` | `extend([3,4])` → `[1,2,3,4]`   |
+
+## . What is a Python Iterator?
+
+An iterator is an object that can be iterated one element at a time.
+
+nums = iter([1,2,3])
+
+print(next(nums))
+
+| Generator        | Iterator               |
+| ---------------- | ---------------------- |
+| Uses yield       | Uses iter() and next() |
+| Easier to create | More code              |
+| Memory efficient | Less efficient         |
+
+## 43. What is a Python Package?
+Answer:
+A package is a collection of Python modules inside a directory containing __init__.
+
+## What is Monkey Patching in Python?
+ 
+Monkey Patching is a technique in Python where you dynamically modify or add methods, attributes, or functions to a class or object at runtime without changing its original source code.
